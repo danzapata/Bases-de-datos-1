@@ -14,7 +14,7 @@
 <body>
 <div class="container mt-5">
 
-    <h1>Trabajo final BD1 - (Título de su trabajo)</h1>
+    <h1>Trabajo final BD1 - Reserva Natural GreenHaven</h1>
 
     <div class="informacion">
         <ul>
@@ -28,14 +28,14 @@
     <div class="integrantes">
         <h2>Integrantes</h2>
         <ul>
-            <li>Integrante 1</li>
-            <li>Integrante 2</li>
-            <li>Integrante 3</li>
+            <li>Andrés Perez Cano</li>
+            <li>Daniel Alberto Zapata Castaño</li>
+            <li>Oky Ruiz De la Rosa</li>
         </ul>
     </div>
 
     <div class="modelo">
-        <h2>Modelo E-R (Lo pueden eliminar o poner su modelo análogo)</h2>
+        <h2>Modelo E-R</h2>
         <p></p>
         <img src="modelo.png">
     </div>
