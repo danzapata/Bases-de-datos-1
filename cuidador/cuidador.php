@@ -21,8 +21,8 @@ include "../includes/header.php";
         </div>
 
         <div class="mb-3">
-            <label for="fechacontratación" class="form-label">Fecha de contratación</label>
-            <input type="date" class="form-control" id="fechacontratación" name="fechacontratación" required>
+            <label for="fecha_contratación" class="form-label">Fecha_contratación</label>
+            <input type="date" class="form-control" id="fecha_contratación" name="fecha_contratación" required>
         </div>
         
         <!-- Consultar la lista de recintos y desplegarlos -->
@@ -45,7 +45,7 @@ include "../includes/header.php";
                 ?>
 
                 <!-- Opción que se genera -->
-                <option value="<?= $fila["código"]; ?>"><?= $fila["tipohábitat"]; ?> - Code <?= $fila["código"]; ?></option>
+                <option value="<?= $fila["código"]; ?>"><?= $fila["tipo_hábitat"]; ?> - Code <?= $fila["código"]; ?></option>
 
                 <?php
                         // Cerrar los estructuras de control
@@ -65,13 +65,13 @@ include "../includes/header.php";
         </div>
 
         <div class="mb-3">
-            <label for="cargoespecifico" class="form-label">Cargo especifico</label>
-            <input type="text" class="form-control" id="cargoespecifico" name="cargoespecifico">
+            <label for="cargo_especifico" class="form-label">Cargo_especifico</label>
+            <input type="text" class="form-control" id="cargo_especifico" name="cargo_especifico">
         </div>
 
         <div class="mb-3">
-            <label for="especialidadmedica" class="form-label">Especialidad medica</label>
-            <input type="text" class="form-control" id="especialidadmedica" name="especialidadmedica">
+            <label for="especialidad_medica" class="form-label">Especialidad_medica</label>
+            <input type="text" class="form-control" id="especialidad_medica" name="especialidad_medica">
         </div>
 
         <button type="submit" class="btn btn-primary">Agregar</button>
@@ -98,11 +98,11 @@ if($resultadoCuidador and $resultadoCuidador->num_rows > 0):
             <tr>
                 <th scope="col" class="text-center">Cédula</th>
                 <th scope="col" class="text-center">Nombre</th>
-                <th scope="col" class="text-center">Fecha de contratación</th>
+                <th scope="col" class="text-center">Fecha_contratación</th>
                 <th scope="col" class="text-center">Recinto</th>
                 <th scope="col" class="text-center">Tipo</th>
-                <th scope="col" class="text-center">Especialidad medica</th>
-                <th scope="col" class="text-center">Cargo especifico</th>
+                <th scope="col" class="text-center">Especialidad_medica</th>
+                <th scope="col" class="text-center">Cargo_especifico</th>
                 <th scope="col" class="text-center">Acciones</th>
             </tr>
         </thead>
@@ -119,11 +119,11 @@ if($resultadoCuidador and $resultadoCuidador->num_rows > 0):
                 <!-- Cada una de las columnas, con su valor correspondiente -->
                 <td class="text-center"><?= $fila["cédula"]; ?></td>
                 <td class="text-center"><?= $fila["nombre"]; ?></td>
-                <td class="text-center"><?= $fila["fechacontratación"]; ?></td>
+                <td class="text-center"><?= $fila["fecha_contratación"]; ?></td>
                 <td class="text-center"><?= $fila["recinto"]; ?></td>
                 <td class="text-center"><?= $fila["tipo"]; ?></td>
-                <td class="text-center"><?= $fila["especialidadmedica"]; ?></td>
-                <td class="text-center"><?= $fila["cargoespecifico"]; ?></td>
+                <td class="text-center"><?= $fila["especialidad_medica"]; ?></td>
+                <td class="text-center"><?= $fila["cargo_especifico"]; ?></td>
                 
                 <!-- Botón de eliminar. Debe de incluir la CP de la entidad para identificarla -->
                 <td class="text-center">

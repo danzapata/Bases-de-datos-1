@@ -4,15 +4,15 @@
 require('../config/conexion.php');
 
 // Sacar los datos del formulario. Cada input se identifica con su "name"
-$faunaid = $_POST["faunaid"];
+$fauna_id = $_POST["fauna_id"];
 $nombre = $_POST["nombre"];
-$pesoactual = $_POST["pesoactual"];
-$fechaingreso = $_POST["fechaingreso"];
-$cuidadorregistrador = $_POST["cuidadorregistrador"];
-$cuidadorencargado = $_POST["cuidadorencargado"];
+$peso_actual = $_POST["peso_actual"];
+$fecha_ingreso = $_POST["fecha_ingreso"];
+$cuidador_registrador = $_POST["cuidador_registrador"];
+$cuidador_encargado = $_POST["cuidador_encargado"];
 
 // Query SQL a la BD. Si tienen que hacer comprobaciones, hacerlas acá (Generar una query diferente para casos especiales)
-$query = "INSERT INTO `animal`(`faunaid`,`nombre`, `pesoactual`, `fechaingreso`, `cuidadorregistrador`, `cuidadorencargado`) VALUES ('$faunaid', '$nombre', '$pesoactual', '$fechaingreso', '$cuidadorregistrador', '$cuidadorencargado')";
+$query = "INSERT INTO `animal`(`fauna_id`,`nombre`, `peso_actual`, `fecha_ingreso`, `cuidador_registrador`, `cuidador_encargado`) VALUES ('$fauna_id', '$nombre', '$peso_actual', '$fecha_ingreso', '$cuidador_registrador', '$cuidador_encargado')";
 
 // Ejecutar consulta
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));

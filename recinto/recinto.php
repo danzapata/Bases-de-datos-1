@@ -16,8 +16,8 @@ include "../includes/header.php";
         </div>
 
         <div class="mb-3">
-            <label for="tipohábitat" class="form-label">Tipo de hábitat</label>
-            <input type="text" class="form-control" id="tipohábitat" name="tipohábitat" required>
+            <label for="tipo_hábitat" class="form-label">Tipo_hábitat</label>
+            <input type="text" class="form-control" id="tipo_hábitat" name="tipo_hábitat" required>
         </div>
 
         <div class="mb-3">
@@ -26,13 +26,13 @@ include "../includes/header.php";
         </div>
 
         <div class="mb-3">
-            <label for="fechacreación" class="form-label">Fecha de creación</label>
-            <input type="date" class="form-control" id="fechacreación" name="fechacreación" required>
+            <label for="fecha_creación" class="form-label">Fecha_creación</label>
+            <input type="date" class="form-control" id="fecha_creación" name="fecha_creación" required>
         </div>
 
         <div class="mb-3">
-            <label for="fechaúltimomantenimiento" class="form-label">Fecha de último mantenimiento</label>
-            <input type="date" class="form-control" id="fechaúltimomantenimiento" name="fechaúltimomantenimiento" required>
+            <label for="fecha_último_mantenimiento" class="form-label">Fecha_último_mantenimiento</label>
+            <input type="date" class="form-control" id="fecha_último_mantenimiento" name="fecha_último_mantenimiento" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Agregar</button>
@@ -58,10 +58,10 @@ if($resultadoRecinto and $resultadoRecinto->num_rows > 0):
         <thead class="table-dark">
             <tr>
                 <th scope="col" class="text-center">Código</th>
-                <th scope="col" class="text-center">Tipo de hábitat</th>
+                <th scope="col" class="text-center">Tipo_hábitat</th>
                 <th scope="col" class="text-center">Capacidad</th>
-                <th scope="col" class="text-center">Fecha de creación</th>
-                <th scope="col" class="text-center">Fecha de último mantenimiento</th>
+                <th scope="col" class="text-center">Fecha_creación</th>
+                <th scope="col" class="text-center">Fecha_último_mantenimiento</th>
                 <th scope="col" class="text-center">Acciones</th>
             </tr>
         </thead>
@@ -77,10 +77,10 @@ if($resultadoRecinto and $resultadoRecinto->num_rows > 0):
             <tr>
                 <!-- Cada una de las columnas, con su valor correspondiente -->
                 <td class="text-center"><?= $fila["código"]; ?></td>
-                <td class="text-center"><?= $fila["tipohábitat"]; ?></td>
+                <td class="text-center"><?= $fila["tipo_hábitat"]; ?></td>
                 <td class="text-center"><?= $fila["capacidad"]; ?></td>
-                <td class="text-center"><?= $fila["fechacreación"]; ?></td>
-                <td class="text-center"><?= $fila["fechaúltimomantenimiento"]; ?></td>
+                <td class="text-center"><?= $fila["fecha_creación"]; ?></td>
+                <td class="text-center"><?= $fila["fecha_último_mantenimiento"]; ?></td>
 
                 <!-- Botón de eliminar. Debe de incluir la CP de la entidad para identificarla -->
                 <td class="text-center">

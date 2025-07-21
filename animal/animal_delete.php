@@ -4,10 +4,10 @@
 require('../config/conexion.php');
 
 // Sacar la CP de la entidad
-$faunaidEliminar = $_POST["faunaidEliminar"];
+$fauna_idEliminar = $_POST["fauna_idEliminar"];
 
 // Query SQL a la BD
-$query = "DELETE FROM animal WHERE faunaid = '$faunaidEliminar'";
+$query = "DELETE FROM animal WHERE fauna_id = '$fauna_idEliminar'";
 
 // Ejecutar consulta
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));

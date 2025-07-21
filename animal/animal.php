@@ -11,8 +11,8 @@ include "../includes/header.php";
     <form action="animal_insert.php" method="post" class="form-group" autocomplete="off">
 
         <div class="mb-3">
-            <label for="faunaid" class="form-label">FaunaID</label>
-            <input type="number" class="form-control" id="faunaid" name="faunaid" min="0" required>
+            <label for="fauna_id" class="form-label">Fauna_ID</label>
+            <input type="number" class="form-control" id="fauna_id" name="fauna_id" min="0" required>
         </div>
        
         <div class="mb-3">
@@ -21,19 +21,19 @@ include "../includes/header.php";
         </div>
 
         <div class="mb-3">
-            <label for="pesoactual" class="form-label">Peso actual</label>
-            <input type="number" class="form-control" id="pesoactual" name="pesoactual" min="0" required>
+            <label for="peso_actual" class="form-label">Peso_actual</label>
+            <input type="number" class="form-control" id="peso_actual" name="peso_actual" min="0" required>
         </div>
 
         <div class="mb-3">
-            <label for="fechaingreso" class="form-label">Fecha de ingreso</label>
-            <input type="date" class="form-control" id="fechaingreso" name="fechaingreso" required>
+            <label for="fecha_ingreso" class="form-label">Fecha_ingreso</label>
+            <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso" required>
         </div>
         
         <!-- Consultar la lista de cuidadores y desplegarlos -->
         <div class="mb-3">
-            <label for="cuidadorregistrador" class="form-label">Cuidador registrador</label>
-            <select name="cuidadorregistrador" id="cuidadorregistrador" class="form-select">
+            <label for="cuidador_registrador" class="form-label">Cuidador_registrador</label>
+            <select name="cuidador_registrador" id="cuidador_registrador" class="form-select">
                 
                 <!-- Option por defecto -->
                 <option value="" selected disabled hidden></option>
@@ -62,8 +62,8 @@ include "../includes/header.php";
         
         <!-- Consultar la lista de cuidadores y desplegarlos -->
         <div class="mb-3">
-            <label for="cuidadorencargado" class="form-label">Cuidador encargado</label>
-            <select name="cuidadorencargado" id="cuidadorencargado" class="form-select">
+            <label for="cuidador_encargado" class="form-label">Cuidador_encargado</label>
+            <select name="cuidador_encargado" id="cuidador_encargado" class="form-select">
                 
                 <!-- Option por defecto -->
                 <option value="" selected disabled hidden></option>
@@ -112,12 +112,12 @@ if($resultadoAnimal and $resultadoAnimal->num_rows > 0):
         <!-- Títulos de la tabla, cambiarlos -->
         <thead class="table-dark">
             <tr>
-                <th scope="col" class="text-center">FaunaID</th>
+                <th scope="col" class="text-center">Fauna_ID</th>
                 <th scope="col" class="text-center">Nombre</th>
-                <th scope="col" class="text-center">Peso actual</th>
-                <th scope="col" class="text-center">Fecha de ingreso</th>
-                <th scope="col" class="text-center">Cuidador registrador</th>
-                <th scope="col" class="text-center">Cuidador encargado</th>
+                <th scope="col" class="text-center">Peso_actual</th>
+                <th scope="col" class="text-center">Fecha_ingreso</th>
+                <th scope="col" class="text-center">Cuidador_registrador</th>
+                <th scope="col" class="text-center">Cuidador_encargado</th>
                 <th scope="col" class="text-center">Acciones</th>
             </tr>
         </thead>
@@ -132,17 +132,17 @@ if($resultadoAnimal and $resultadoAnimal->num_rows > 0):
             <!-- Fila que se generará -->
             <tr>
                 <!-- Cada una de las columnas, con su valor correspondiente -->
-                <td class="text-center"><?= $fila["faunaid"]; ?></td>
+                <td class="text-center"><?= $fila["fauna_id"]; ?></td>
                 <td class="text-center"><?= $fila["nombre"]; ?></td>
-                <td class="text-center"><?= $fila["pesoactual"]; ?></td>
-                <td class="text-center"><?= $fila["fechaingreso"]; ?></td>
-                <td class="text-center"><?= $fila["cuidadorregistrador"]; ?></td>
-                <td class="text-center"><?= $fila["cuidadorencargado"]; ?></td>
+                <td class="text-center"><?= $fila["peso_actual"]; ?></td>
+                <td class="text-center"><?= $fila["fecha_ingreso"]; ?></td>
+                <td class="text-center"><?= $fila["cuidador_registrador"]; ?></td>
+                <td class="text-center"><?= $fila["cuidador_encargado"]; ?></td>
                 
                 <!-- Botón de eliminar. Debe de incluir la CP de la entidad para identificarla -->
                 <td class="text-center">
                     <form action="animal_delete.php" method="post">
-                        <input hidden type="text" name="faunaidEliminar" value="<?= $fila["faunaid"]; ?>">
+                        <input hidden type="text" name="fauna_idEliminar" value="<?= $fila["fauna_id"]; ?>">
                         <button type="submit" class="btn btn-danger">Eliminar</button>
                     </form>
                 </td>
