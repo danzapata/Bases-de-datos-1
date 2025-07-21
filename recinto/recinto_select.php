@@ -4,9 +4,9 @@
 require('../config/conexion.php');
 
 // Query SQL a la BD
-$query = "SELECT * FROM cliente";
+$query = "SELECT * FROM recinto";
 
 // Ejecutar la consulta
-$resultadoCliente = mysqli_query($conn, $query) or die(mysqli_error($conn));
+$resultadoRecinto = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
 mysqli_close($conn);
