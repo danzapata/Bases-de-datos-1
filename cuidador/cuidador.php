@@ -54,25 +54,13 @@ include "../includes/header.php";
                 ?>
             </select>
         </div>
-        
-        <div class="mb-3">
-          <label for="tipo" class="form-label">Tipo</label>
-          <select name="tipo" id="tipo" class="form-select" required>
-            <option value="" selected disabled hidden>Seleccione tipo...</option>
-            <option value="Cuidador">Cuidador</option>
-            <option value="Veterinario">Vetenerinario</option>
-          </select>
-        </div>
-
+              
         <div class="mb-3">
             <label for="cargo_especifico" class="form-label">Cargo_especifico</label>
             <input type="text" class="form-control" id="cargo_especifico" name="cargo_especifico">
         </div>
 
-        <div class="mb-3">
-            <label for="especialidad_medica" class="form-label">Especialidad_medica</label>
-            <input type="text" class="form-control" id="especialidad_medica" name="especialidad_medica">
-        </div>
+
 
         <button type="submit" class="btn btn-primary">Agregar</button>
 
@@ -100,8 +88,6 @@ if($resultadoCuidador and $resultadoCuidador->num_rows > 0):
                 <th scope="col" class="text-center">Nombre</th>
                 <th scope="col" class="text-center">Fecha_contratación</th>
                 <th scope="col" class="text-center">Recinto</th>
-                <th scope="col" class="text-center">Tipo</th>
-                <th scope="col" class="text-center">Especialidad_medica</th>
                 <th scope="col" class="text-center">Cargo_especifico</th>
                 <th scope="col" class="text-center">Acciones</th>
             </tr>
@@ -121,8 +107,6 @@ if($resultadoCuidador and $resultadoCuidador->num_rows > 0):
                 <td class="text-center"><?= $fila["nombre"]; ?></td>
                 <td class="text-center"><?= $fila["fecha_contratación"]; ?></td>
                 <td class="text-center"><?= $fila["recinto"]; ?></td>
-                <td class="text-center"><?= $fila["tipo"]; ?></td>
-                <td class="text-center"><?= $fila["especialidad_medica"]; ?></td>
                 <td class="text-center"><?= $fila["cargo_especifico"]; ?></td>
                 
                 <!-- Botón de eliminar. Debe de incluir la CP de la entidad para identificarla -->

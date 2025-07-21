@@ -33,7 +33,7 @@ include "../includes/header.php";
         <!-- Consultar la lista de cuidadores y desplegarlos -->
         <div class="mb-3">
             <label for="cuidador_registrador" class="form-label">Cuidador_registrador</label>
-            <select name="cuidador_registrador" id="cuidador_registrador" class="form-select">
+            <select name="cuidador_registrador" id="cuidador_registrador" class="form-select" required>
                 
                 <!-- Option por defecto -->
                 <option value="" selected disabled hidden></option>

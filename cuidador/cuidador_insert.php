@@ -8,11 +8,10 @@ $cédula = $_POST["cédula"];
 $nombre = $_POST["nombre"];
 $fecha_contratación = $_POST["fecha_contratación"];
 $recinto = $_POST["recinto"];
-$especialidad_medica = $_POST["especialidad_medica"];
 $cargo_especifico = $_POST["cargo_especifico"];
 
 // Query SQL a la BD. Si tienen que hacer comprobaciones, hacerlas acá (Generar una query diferente para casos especiales)
-$query = "INSERT INTO `cuidador`(`cédula`,`nombre`, `fecha_contratación`, `recinto`, `especialidad_medica`, `cargo_especifico`) VALUES ('$cédula', '$nombre', '$fecha_contratación', '$recinto', '$especialidad_medica', '$cargo_especifico')";
+$query = "INSERT INTO `cuidador`(`cédula`,`nombre`, `fecha_contratación`, `recinto`, `cargo_especifico`) VALUES ('$cédula', '$nombre', '$fecha_contratación', '$recinto', '$cargo_especifico')";
 
 // Ejecutar consulta
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
