@@ -9,10 +9,10 @@ $nombre = $_POST["nombre"];
 $peso_actual = $_POST["peso_actual"];
 $fecha_ingreso = $_POST["fecha_ingreso"];
 $cuidador_registrador = $_POST["cuidador_registrador"];
-$cuidador_encargado = $_POST["cuidador_encargado"];
+$cuidador_encargado = isset($_POST["cuidador_encargado"]) && $_POST["cuidador_encargado"] !== "" ? $_POST["cuidador_encargado"] : "NULL";
 
 // Query SQL a la BD. Si tienen que hacer comprobaciones, hacerlas acá (Generar una query diferente para casos especiales)
-$query = "INSERT INTO `animal`(`fauna_id`,`nombre`, `peso_actual`, `fecha_ingreso`, `cuidador_registrador`, `cuidador_encargado`) VALUES ('$fauna_id', '$nombre', '$peso_actual', '$fecha_ingreso', '$cuidador_registrador', '$cuidador_encargado')";
+$query = "INSERT INTO `animal`(`fauna_id`,`nombre`, `peso_actual`, `fecha_ingreso`, `cuidador_registrador`, `cuidador_encargado`) VALUES ('$fauna_id', '$nombre', '$peso_actual', '$fecha_ingreso', '$cuidador_registrador', $cuidador_encargado)";
 
 // Ejecutar consulta
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));

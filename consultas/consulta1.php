@@ -3,14 +3,13 @@ include "../includes/header.php";
 ?>
 
 <!-- TÍTULO. Cambiarlo, pero dejar especificada la analogía -->
-<h1 class="mt-3">Consulta 1</h1>
+<h1 class="mt-3">Animales más pesados(reparaciones mayor valor)/Sin cuidador encargado(mécanico ejecutor)</h1>
 
 <p class="mt-3">
-    Sea sumavalor la suma de los valores de todos los proyectos asociados con un cliente.
-    El primer botón debe mostrar la cédula y el nombre de cada uno de los clientes 
-    que cumple todas las siguientes condiciones: es gerente, tiene sumavalor > 1000,
-    ha revisado al menos 3 proyectos y la empresa que gerencia no ha revisado ni un
-    solo proyecto.
+    El primer botón muestra los datos de los tres animales de mayor 
+    peso que no tienen cuidador encargado. 
+    Ademas, se  muestra para cada uno de estos tres animales 
+    los datos correspondientes del cuidador registrador.
 </p>
 
 <?php
@@ -18,7 +17,20 @@ include "../includes/header.php";
 require('../config/conexion.php');
 
 // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
-$query = "SELECT cedula, nombre FROM cliente";
+$query = "SELECT 
+    a.*, 
+    a.nombre AS nombre_animal,
+    c.*
+FROM 
+    animal a
+JOIN 
+	cuidador c ON a.cuidador_registrador = c.cédula 
+WHERE 
+    a.cuidador_encargado IS NULL
+ORDER BY 
+    a.peso_actual DESC
+LIMIT 3;";
+
 
 // Ejecutar la consulta
 $resultadoC1 = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -39,8 +51,17 @@ if($resultadoC1 and $resultadoC1->num_rows > 0):
         <!-- Títulos de la tabla, cambiarlos -->
         <thead class="table-dark">
             <tr>
-                <th scope="col" class="text-center">Cédula</th>
+                <th scope="col" class="text-center">Fauna_id</th>
                 <th scope="col" class="text-center">Nombre</th>
+                <th scope="col" class="text-center">Peso_actual</th>
+                <th scope="col" class="text-center">Fecha_ingreso</th>
+                <th scope="col" class="text-center">Encargado</th>
+
+                <th scope="col" class="text-center">C.C.registrador</th>
+                <th scope="col" class="text-center">Nombre_registrador</th>
+                <th scope="col" class="text-center">Fecha_contratación</th>
+                <th scope="col" class="text-center">Recinto</th>
+                <th scope="col" class="text-center">Cargo_especifico</th>
             </tr>
         </thead>
 
@@ -54,8 +75,17 @@ if($resultadoC1 and $resultadoC1->num_rows > 0):
             <!-- Fila que se generará -->
             <tr>
                 <!-- Cada una de las columnas, con su valor correspondiente -->
-                <td class="text-center"><?= $fila["cedula"]; ?></td>
+                <td class="text-center"><?= $fila["fauna_id"]; ?></td>
+                <td class="text-center"><?= $fila["nombre_animal"]; ?></td>
+                <td class="text-center"><?= $fila["peso_actual"]; ?></td>
+                <td class="text-center"><?= $fila["fecha_ingreso"]; ?></td>
+                <td class="text-center"><?= $fila["cuidador_encargado"]; ?></td>
+
+                <td class="text-center"><?= $fila["cuidador_registrador"]; ?></td>
                 <td class="text-center"><?= $fila["nombre"]; ?></td>
+                <td class="text-center"><?= $fila["fecha_contratación"]; ?></td>
+                <td class="text-center"><?= $fila["recinto"]; ?></td>
+                <td class="text-center"><?= $fila["cargo_especifico"]; ?></td>
             </tr>
 
             <?php
