@@ -3,12 +3,14 @@ include "../includes/header.php";
 ?>
 
 <!-- TÍTULO. Cambiarlo, pero dejar especificada la analogía -->
-<h1 class="mt-3">Búsqueda 1</h1>
+<h1 class="mt-3">Animales dentro del rango de fechas de recinto</h1>
 
 <p class="mt-3">
-    Dos fechas f1 y f2 (cada fecha con día, mes y año), f2 ≥ f1 y un número entero n,
-    n ≥ 0. Se debe mostrar la cédula y el celular de todos los clientes que han 
-    revisado exactamente n proyectos en dicho rango de fechas [f1, f2].
+    Se debe ingresar: El código de un recinto.
+    Se muestran todos los animales que tienen como encargado al cuidador que preserva 
+    a dicho recinto, pero siempre y cuando la fecha de ingreso de dichos animales estén por 
+    fuera del intervalo de fechas de dicho recinto, es decir antes de la creacíon del recinto y despues del 
+    último mantenimiento del mismo.
 </p>
 
 <!-- FORMULARIO. Cambiar los campos de acuerdo a su trabajo -->
@@ -18,18 +20,8 @@ include "../includes/header.php";
     <form action="busqueda1.php" method="post" class="form-group">
 
         <div class="mb-3">
-            <label for="fecha1" class="form-label">Fecha 1</label>
-            <input type="date" class="form-control" id="fecha1" name="fecha1" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="fecha2" class="form-label">Fecha 2</label>
-            <input type="date" class="form-control" id="fecha2" name="fecha2" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="numero" class="form-label">Número</label>
-            <input type="number" class="form-control" id="numero" name="numero" required>
+            <label for="código_recinto" class="form-label">Código_recinto</label>
+            <input type="number" class="form-control" id="código_recinto" name="código_recinto" min="0" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Buscar</button>
@@ -45,13 +37,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
     // Crear conexión con la BD
     require('../config/conexion.php');
 
-    $fecha1 = $_POST["fecha1"];
-    $fecha2 = $_POST["fecha2"];
-    $numero = $_POST["numero"];
+    $código_recinto = $_POST["código_recinto"];
 
     // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
-    $query = "SELECT cedula, celular FROM cliente";
-
+    $query = "SELECT a.*
+              FROM animal a
+              JOIN cuidador c ON a.cuidador_encargado = c.cédula
+              JOIN recinto r ON c.recinto = r.código
+              WHERE r.código = '$código_recinto' 
+                AND (
+                  a.fecha_ingreso < r.fecha_creación OR
+                  a.fecha_ingreso > r.fecha_último_mantenimiento
+              );";
+ 
     // Ejecutar la consulta
     $resultadoB1 = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
@@ -69,8 +67,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
         <!-- Títulos de la tabla, cambiarlos -->
         <thead class="table-dark">
             <tr>
-                <th scope="col" class="text-center">Cédula</th>
-                <th scope="col" class="text-center">Celular</th>
+                <th scope="col" class="text-center">Fauna_ID</th>
+                <th scope="col" class="text-center">Nombre</th>
+                <th scope="col" class="text-center">Peso_actual</th>
+                <th scope="col" class="text-center">Fecha_ingreso</th>
+                <th scope="col" class="text-center">Cuidador_registrador</th>
+                <th scope="col" class="text-center">Cuidador_encargado</th>
             </tr>
         </thead>
 
@@ -84,8 +86,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
             <!-- Fila que se generará -->
             <tr>
                 <!-- Cada una de las columnas, con su valor correspondiente -->
-                <td class="text-center"><?= $fila["cedula"]; ?></td>
-                <td class="text-center"><?= $fila["celular"]; ?></td>
+                <td class="text-center"><?= $fila["fauna_id"]; ?></td>
+                <td class="text-center"><?= $fila["nombre"]; ?></td>
+                <td class="text-center"><?= $fila["peso_actual"]; ?></td>
+                <td class="text-center"><?= $fila["fecha_ingreso"]; ?></td>
+                <td class="text-center"><?= $fila["cuidador_registrador"]; ?></td>
+                <td class="text-center"><?= $fila["cuidador_encargado"]; ?></td>
             </tr>
 
             <?php

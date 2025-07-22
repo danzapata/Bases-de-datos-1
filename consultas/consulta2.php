@@ -3,14 +3,11 @@ include "../includes/header.php";
 ?>
 
 <!-- TÍTULO. Cambiarlo, pero dejar especificada la analogía -->
-<h1 class="mt-3">Consulta 2</h1>
+<h1 class="mt-3">Cuidadores encargados no registradores</h1>
 
 <p class="mt-3">
-    Sea sumavalor la suma de los valores de todos los proyectos asociados con un cliente.
-    El segundo botón debe mostrar el código y el valor de cada uno de los proyectos 
-    que cumple todas las siguientes condiciones: tiene un valor mayor que el 
-    presupuesto de la empresa que lo revisa y además el cliente que lo revisa es el 
-    gerente de la empresa que lo revisa.
+    El segundo botón muestra los datos de los cuidadores que estan preservando un recinto,y que estan acargo 
+     de al menos dos (≥ 2 animales) animales y que nunca han sido registradores.
 </p>
 
 <?php
@@ -18,7 +15,32 @@ include "../includes/header.php";
 require('../config/conexion.php');
 
 // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
-$query = "SELECT codigo, valor FROM proyecto";
+$query = "SELECT 
+    c.cédula,
+    c.nombre,
+    c.fecha_contratación,
+    c.recinto,
+    c.cargo_especifico,
+    COUNT(a_enc.fauna_id) AS animales_encargado
+FROM cuidador c
+JOIN animal a_enc 
+  ON c.cédula = a_enc.cuidador_encargado
+WHERE 
+    c.recinto IS NOT NULL
+    AND
+    c.cédula NOT IN (
+      SELECT DISTINCT a_reg.cuidador_registrador
+      FROM animal a_reg
+      WHERE a_reg.cuidador_registrador IS NOT NULL
+    )
+GROUP BY 
+    c.cédula,
+    c.nombre,
+    c.fecha_contratación,
+    c.recinto,
+    c.cargo_especifico
+HAVING 
+    COUNT(a_enc.fauna_id) >= 2;";
 
 // Ejecutar la consulta
 $resultadoC2 = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -41,6 +63,11 @@ if($resultadoC2 and $resultadoC2->num_rows > 0):
             <tr>
                 <th scope="col" class="text-center">Cédula</th>
                 <th scope="col" class="text-center">Nombre</th>
+                <th scope="col" class="text-center">Fecha_contratación</th>
+                <th scope="col" class="text-center">Recinto</th>
+                <th scope="col" class="text-center">Cargo_especifico</th>
+                
+
             </tr>
         </thead>
 
@@ -54,8 +81,11 @@ if($resultadoC2 and $resultadoC2->num_rows > 0):
             <!-- Fila que se generará -->
             <tr>
                 <!-- Cada una de las columnas, con su valor correspondiente -->
-                <td class="text-center"><?= $fila["cedula"]; ?></td>
+                <td class="text-center"><?= $fila["cédula"]; ?></td>
                 <td class="text-center"><?= $fila["nombre"]; ?></td>
+                <td class="text-center"><?= $fila["fecha_contratación"]; ?></td>
+                <td class="text-center"><?= $fila["recinto"]; ?></td>
+                <td class="text-center"><?= $fila["cargo_especifico"]; ?></td>
             </tr>
 
             <?php

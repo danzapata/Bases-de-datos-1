@@ -3,13 +3,13 @@ include "../includes/header.php";
 ?>
 
 <!-- TÍTULO. Cambiarlo, pero dejar especificada la analogía -->
-<h1 class="mt-3">Animales más pesados(reparaciones mayor valor)/Sin cuidador encargado(mécanico ejecutor)</h1>
+<h1 class="mt-3">Animales más pesados y sin cuidador encargado</h1>
 
 <p class="mt-3">
     El primer botón muestra los datos de los tres animales de mayor 
-    peso que no tienen cuidador encargado. 
+    peso y que no tienen cuidador encargado. 
     Ademas, se  muestra para cada uno de estos tres animales 
-    los datos correspondientes del cuidador registrador.
+    los datos correspondientes de su cuidador registrador.
 </p>
 
 <?php
